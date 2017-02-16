@@ -1,0 +1,5 @@
+*.pdf
+data/
+*.ipynb
+results/
+.idea/
