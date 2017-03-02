@@ -6,22 +6,23 @@ import pandas as pd
 
 def transform_dual(X, y, C=.5):
     # Here, we keep lambda as the variable. We need to make A bigger to account for the 2 inequalities on lambda
-    d = len(X)
     n = X.shape[0]
-    Q = np.diag(y) * X * X.T * np.diag(y)
+    X_m = matrix(X.values)
+    Q = matrix(np.diag(y)) * X_m * X_m.T * matrix(np.diag(y))
     p = np.ones(n)
     G = np.zeros((2 * n, n))
     h = np.zeros(2 * n)
     G[:n, :n] = np.eye(n)
     G[n:2 * n, :n] = -np.eye(n)
     h[:n] = C * np.ones(n)
-    return Q, p, G, h
+    return matrix(Q), matrix(p), matrix(G), matrix(h)
 
 
 def SVM(X, y, C=.5):
     Q, p, G, h = transform_dual(X, y, C)
     w_sol = solvers.qp(Q, p, G, h)
-    return w_sol
+    print(w_sol)
+    return w_sol['x']
 
 
 def predict(w, yval):
