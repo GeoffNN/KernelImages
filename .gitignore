@@ -5,3 +5,5 @@ results/
 .idea/
 *.pyc
 *.jpeg
+/.cache/
+*.csv
