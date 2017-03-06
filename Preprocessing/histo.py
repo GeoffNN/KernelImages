@@ -2,26 +2,28 @@ import numpy as np
 import pandas as pd
 
 
-# Return the histogram of an image as pd df
-# Input : pd df of an image (img_src) and number of bins (p)
-def rgb_to_histo(img_src,p):
-    histo = np.zeros((p*p*p))
-    x = int(p*(img_src.values +0.5))
-    p2 = p*p
-    
-    for i in range(1024):
-        r,g,b = x[i],x[i+1024],x[i+2048]
-        ind = p2*int(b) + p*int(g) + int(r)
-        histo[ind] +=1
-        
-    return pd.DataFrame(histo.T)
+# Compute the index in the histogram of pixel x
+def get_ind(x, i, n_bins):
+    r, g, b = x[i] + 0.5, x[i + 1024] + 0.5, x[i + 2048] + 0.5
+    ind = n_bins * n_bins * int(b * n_bins) + n_bins * int(g * n_bins) + int(r * n_bins)
+    return ind
 
-# Transform a data frame of image in a df of histograms
-def data_to_histo(d,p):
+
+# Compute the histogram of one RGB image
+def rgb_to_histogram(img_src, n_bins):
+    histogram = np.zeros((n_bins * n_bins * n_bins))
+
+    for i in range(1024):
+        ind = get_ind(img_src, i, n_bins)
+        histogram[ind] += 1
+
+    return pd.DataFrame(histogram.T)
+
+
+# Transform a data frame of RGB image in a df of histograms
+def data_to_histogram(d, n_bins):
     df = pd.DataFrame()
     for i in range(d.shape[0]):
-        if i % 500 == 0:
-            print(i)
-        h = rgb_to_histo(d.iloc[i,:],p)
+        h = rgb_to_histogram(d.iloc[i, :], n_bins)
         df = df.append(h.T)
     return df

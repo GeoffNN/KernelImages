@@ -4,6 +4,15 @@ data/*
 results/
 .idea/
 *.pyc
+<<<<<<< HEAD
+<<<<<<< 1048b49e6e3481bf95d2987772e52b45a82a4757
+/.cache/
+*.csv
+=======
+*.jpeg
+>>>>>>> preprocessing (creation des histos) + kernel svm (tourne mais pas efficace : grosse erreur +  temps de calcul du noyau trop long
+=======
 *.jpeg
 /.cache/
 *.csv
+>>>>>>> 2c267555d0d41cb89a6ea12257c17a558a0d2fb3
