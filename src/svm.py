@@ -1,4 +1,10 @@
 import numpy as np
+
+
+def kernel_lap(x,y,rho,a,b):
+	sum = np.sum(abs(x**a-y**a)**b)
+	return np.exp(-rho*sum)
+
 import cvxopt
 from cvxopt import matrix, solvers
 import pandas as pd
@@ -43,3 +49,4 @@ def onevsoneSVM(X, y, C=.5):
             if class1 != class2:
                 X_train = pd.concat((X.loc[y == class1], X.loc[y == class2]))
                 y_train = pd.concat((y.loc[y == class1]), y.loc(y == class2))
+
