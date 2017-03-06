@@ -2,7 +2,7 @@ import numpy as np
 
 
 def gaussian(x, y, gamma):
-    return np.exp(-gamma * (x - y).norm())
+    return np.exp(-gamma * (x - y).dot((x-y).T))
 
 
 def laplacian(x, y, a, b, rho):
