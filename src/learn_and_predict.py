@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np
-from kernel_svm import kernel_matrix, onevsallSVM, predict_onevsall, error_rate
+from kernel_svm import kernel_matrix, onevsallSVM, predict_onevsall
+from scoring import get_score
 
 data_train = pd.read_pickle('../data/histo_16s_train')
 data_test = pd.read_pickle('../data/histo_16s_test')
@@ -30,9 +31,9 @@ models = onevsallSVM(train, train_label, C=100)
 # Predicting
 ypred = []
 for i in range(5000 - np.sum(ind)):
-    ypred.append(pred_onevsall(models, test.iloc[i, :], train, train_label))
+    ypred.append(onevsallSVM(models, test.iloc[i, :], train, train_label))
 
 ypred = np.array(ypred)
 
 # Error
-error_rate(ypred, test_label)
+print(get_score(ypred, test_label))
