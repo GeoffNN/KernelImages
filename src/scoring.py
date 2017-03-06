@@ -11,4 +11,4 @@ def get_train_val(training, train_frac=.75, seed=0):
 
 
 def get_score(y_pred, y_groundtruth):
-    return (y_pred == y_groundtruth).sum()
+    return (y_pred == y_groundtruth).mean()
