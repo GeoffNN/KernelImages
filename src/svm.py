@@ -35,10 +35,12 @@ def SVM(X, y, C=.5):
     return w_sol['x']
 
 
+# TODO: correct predict
 def predict(w, yval):
-    return np.sign(w, yval)
+    return np.sign(w.dot(yval))
 
 
+# TODO: finish the two pipelines
 def onevsallSVM(X, y, C=.5):
     models = {}
     for cls in np.unique(y):
