@@ -1,10 +1,14 @@
 import numpy as np
+<<<<<<< HEAD
+<<<<<<< 1048b49e6e3481bf95d2987772e52b45a82a4757
+=======
 
 
 def kernel_lap(x,y,rho,a,b):
 	sum = np.sum(abs(x**a-y**a)**b)
 	return np.exp(-rho*sum)
 
+>>>>>>> 2c267555d0d41cb89a6ea12257c17a558a0d2fb3
 import cvxopt
 from cvxopt import matrix, solvers
 import pandas as pd
@@ -51,4 +55,14 @@ def onevsoneSVM(X, y, C=.5):
             if class1 != class2:
                 X_train = pd.concat((X.loc[y == class1], X.loc[y == class2]))
                 y_train = pd.concat((y.loc[y == class1]), y.loc(y == class2))
+<<<<<<< HEAD
+=======
 
+def kernel_lap(x,y,rho,a,b):
+	sum = np.sum(abs(x**a-y**a)**b)
+	return np.exp(-rho*sum)
+
+>>>>>>> preprocessing (creation des histos) + kernel svm (tourne mais pas efficace : grosse erreur +  temps de calcul du noyau trop long
+=======
+
+>>>>>>> 2c267555d0d41cb89a6ea12257c17a558a0d2fb3
