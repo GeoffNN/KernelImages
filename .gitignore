@@ -1,6 +1,7 @@
 *.pdf
 data/*
-results/
+results/*
+pickles/*
 .idea/
 *.pyc
 *.jpeg
@@ -8,3 +9,4 @@ results/
 *.csv
 predictions/*
 src/__pycache__/
+*ipynb_checkpoints*
