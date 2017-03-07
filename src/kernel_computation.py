@@ -1,5 +1,5 @@
 import numpy as np
-from sparse_function import sparse_absolute, sparse_min, sparse_norm_2
+from src.sparse_function import sparse_absolute, sparse_min, sparse_norm_2
 
 
 def linear_kernel(x, y):
@@ -42,9 +42,3 @@ def kernel_matrix(X, kernel, **kwargs):
         for j in range(n):
             K[i, j] = kernel(X[i], X[j], **kwargs)
     return K
-
-s
-def scipy_sparse_to_spmatrix(A):
-    coo = A.tocoo()
-    SP = spmatrix(coo.data.tolist(), coo.row.tolist(), coo.col.tolist(), size=A.shape)
-    return SP

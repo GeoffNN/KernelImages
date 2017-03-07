@@ -1,6 +1,6 @@
 import pandas as pd
 import numpy as np
-from kernel_svm import kernel_matrix, onevsallSVM, predict_onevsall
+from kernel_svm import compute_kernel, onevsallSVM, predict_onevsall
 from scoring import get_score
 
 data_train = pd.read_pickle('../data/histo_16s_train')
@@ -23,7 +23,7 @@ test_label = label.loc[ind == 0].iloc[:, 1]
 rho = 1.
 a = 0.25
 b = 1
-kernel_matrix(train)
+compute_kernel(train)
 
 # Training
 models = onevsallSVM(train, train_label, C=100)
