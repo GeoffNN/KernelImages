@@ -17,7 +17,7 @@ def kernel_matrix(X, kernel, **kwargs):
     n = X.shape[0]
     K = np.zeros((n, n))
     for i in range(n):
-        if (i % 500 == 0):
+        if i % 500 == 0:
             print(i)
         for j in range(n):
             K[i, j] = kernel(X[i], X[j], **kwargs)

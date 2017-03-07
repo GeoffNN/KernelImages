@@ -6,7 +6,7 @@ from svm import kernel_matrix, onevsallSVM,pred_onevsall,error_rate
 data_train = pd.read_pickle('../data/histo_16s_train')
 data_test = pd.read_pickle('../data/histo_16s_test')
 
-label = pd.read_csv('../data/Ytr.csv',sep = ',')
+label = pd.read_csv('../data/Ytr.csv', sep=',')
 
 # Split the training data set : 80% training and 20% test
 ind = np.random.binomial(1,0.8,5000)
