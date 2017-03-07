@@ -1,0 +1,272 @@
+[33mcommit f5328b78adbb9adefdd95253fd8bcd0e6a48c265[m
+Author: MarcSzafraniec <mszafraniec@laposte.net>
+Date:   Tue Mar 7 13:58:37 2017 +0100
+
+    Changed pickle
+
+[33mcommit 3d06ae3a9faedf82250ac14066b791f3b997613d[m
+Author: MarcSzafraniec <mszafraniec@laposte.net>
+Date:   Thu Mar 2 16:28:08 2017 +0100
+
+    Added HOG
+
+[33mcommit be576b1044681023c85e2c0c69fbc24bdad5bf10[m
+Author: MarcSzafraniec <mszafraniec@laposte.net>
+Date:   Thu Mar 2 16:23:18 2017 +0100
+
+    added HOG among others
+
+[33mcommit 4060b10dc1f9c339d74de813268b4b4962ef6af6[m
+Merge: afc4b7e 144df9d
+Author: nicolas-lair <nl.nicolas.lair@gmail.com>
+Date:   Mon Mar 6 19:32:09 2017 +0100
+
+    Merge pull request #11 from GeoffNN/nico
+    
+    Check svm
+
+[33mcommit 144df9d03e71e0ed057553936d12e85127aab965[m
+Author: nicolas-lair <nicolas.lair@polytechnique.edu>
+Date:   Mon Mar 6 19:31:04 2017 +0100
+
+    Check svm
+
+[33mcommit afc4b7ee3bf3b5c335c6db7b0a4f3229273f6938[m
+Merge: 04f8c0a 1d34995
+Author: nicolas-lair <nl.nicolas.lair@gmail.com>
+Date:   Mon Mar 6 17:42:06 2017 +0100
+
+    Merge pull request #10 from GeoffNN/nico
+    
+    Tout dans src
+
+[33mcommit 1d34995fc9f68b2c8603d0c13120a9419ca9f850[m
+Author: nicolas-lair <nicolas.lair@polytechnique.edu>
+Date:   Mon Mar 6 17:41:04 2017 +0100
+
+    Tout dans src
+
+[33mcommit 04f8c0a5a4e27a0c764849e9fb95b11584dee9a8[m
+Merge: 5a170e8 53d57fe
+Author: GeoffNN <geoffrey.negiar@polytechnique.edu>
+Date:   Mon Mar 6 17:27:43 2017 +0100
+
+    Merge pull request #9 from GeoffNN/geoffrey
+    
+    Geoffrey
+
+[33mcommit 53d57fe2f0571fc823913cc628f74c52d2c37fcf[m
+Author: GeoffNN <geoffrey.negiar@polytechnique.edu>
+Date:   Mon Mar 6 17:13:14 2017 +0100
+
+    Added file reading and printing utilities
+
+[33mcommit 3c1eccd102ba0a008d384e13ba97e1a0153caa77[m
+Author: GeoffNN <geoffrey.negiar@polytechnique.edu>
+Date:   Mon Mar 6 17:12:22 2017 +0100
+
+    Added get_train_val for cross validation
+    Added score computation
+
+[33mcommit 5a170e806a43e7eca834bcc73c5b74a3f63015e5[m
+Merge: aa21e4c 80ae585
+Author: GeoffNN <geoffrey.negiar@polytechnique.edu>
+Date:   Mon Mar 6 17:21:07 2017 +0100
+
+    Merge pull request #8 from GeoffNN/geoffrey
+    
+    Geoffrey
+
+[33mcommit 80ae58595a7518f244bed43922cdd9e70742086a[m
+Merge: 4505ce3 aa21e4c
+Author: GeoffNN <geoffrey.negiar@polytechnique.edu>
+Date:   Mon Mar 6 17:20:44 2017 +0100
+
+    Merge branch 'master' into geoffrey
+
+[33mcommit aa21e4ce16ed1eb1070be1d6620d7a684131e285[m
+Merge: 69ba34e 1f5ba13
+Author: nicolas-lair <nl.nicolas.lair@gmail.com>
+Date:   Mon Mar 6 17:18:43 2017 +0100
+
+    Merge pull request #7 from GeoffNN/nico
+    
+    Nico
+
+[33mcommit 1f5ba13a7d40ed01983cf816b78f77da910a41f8[m
+Merge: 71f8fca 2c26755
+Author: nicolas-lair <nicolas.lair@polytechnique.edu>
+Date:   Mon Mar 6 17:14:49 2017 +0100
+
+    Modification des fonctions de preprocessing (plus lisibles) + pickle en sparse matrix + bugs résolus dans svm
+
+[33mcommit 4505ce3243476ed902d3b2e9a853941d378d6593[m
+Author: GeoffNN <geoffrey.negiar@polytechnique.edu>
+Date:   Mon Mar 6 16:05:52 2017 +0100
+
+    Added notebooks to Git - WARNING : don't commit changes to other people's notebooks
+
+[33mcommit 71f8fcaac7de52d4aacb72dc4743e03d5544d5d4[m
+Author: nicolas-lair <nicolas.lair@polytechnique.edu>
+Date:   Mon Mar 6 14:48:56 2017 +0100
+
+    preprocessing (creation des histos) + kernel svm (tourne mais pas efficace : grosse erreur +  temps de calcul du noyau trop long
+
+[33mcommit cad05edba4d5a741a9455d975345f99b7ce7989f[m
+Author: GeoffNN <geoffrey.negiar@polytechnique.edu>
+Date:   Fri Mar 3 19:33:38 2017 +0100
+
+    Corrected predict
+
+[33mcommit 69ba34e10b3f1d6961c8bd2c2b3b22d771db4eec[m
+Merge: dd41b55 2c26755
+Author: GeoffNN <geoffrey.negiar@polytechnique.edu>
+Date:   Mon Mar 6 14:55:57 2017 +0100
+
+    Merge pull request #6 from GeoffNN/nico
+    
+    TODO: delete SVM.py - everything is in kernel_svm.py
+
+[33mcommit 2c267555d0d41cb89a6ea12257c17a558a0d2fb3[m
+Merge: 647baa2 dd41b55
+Author: GeoffNN <geoffrey.negiar@polytechnique.edu>
+Date:   Mon Mar 6 14:55:09 2017 +0100
+
+    Merge branch 'master' into nico
+
+[33mcommit 1048b49e6e3481bf95d2987772e52b45a82a4757[m
+Author: nicolas-lair <nicolas.lair@polytechnique.edu>
+Date:   Mon Mar 6 12:07:13 2017 +0100
+
+    Preprocessing (histo) + kernel svm (working but bad results)
+
+[33mcommit 647baa269b54674d5531edb65db3a959acae627f[m
+Author: nicolas-lair <nicolas.lair@polytechnique.edu>
+Date:   Mon Mar 6 14:48:56 2017 +0100
+
+    preprocessing (creation des histos) + kernel svm (tourne mais pas efficace : grosse erreur +  temps de calcul du noyau trop long
+
+[33mcommit 7d9d47155992794974837ec46098ad60c3cee5cd[m
+Author: nicolas-lair <nicolas.lair@polytechnique.edu>
+Date:   Mon Mar 6 12:07:13 2017 +0100
+
+    Preprocessing (histo) + kernel svm (working but bad results)
+
+[33mcommit dd41b55dab2179b8b69cca4128d99e598cd1bd44[m
+Merge: 889723f 6bfadb5
+Author: MarcSzafraniec <mszafraniec@laposte.net>
+Date:   Thu Mar 2 17:14:50 2017 +0100
+
+    Merge pull request #5 from GeoffNN/geoffrey
+    
+    Geoffrey
+
+[33mcommit 6bfadb542017c572bf4910f742b640819fd6b354[m
+Merge: 51d370e 83741b5
+Author: GeoffNN <geoffrey.negiar@polytechnique.edu>
+Date:   Thu Mar 2 16:35:55 2017 +0100
+
+    Merge remote-tracking branch 'origin/geoffrey' into geoffrey
+
+[33mcommit 51d370eeed0d5fe84415ed28fa1c68e421d9b3d7[m
+Author: GeoffNN <geoffrey.negiar@polytechnique.edu>
+Date:   Thu Mar 2 16:35:40 2017 +0100
+
+    SVM computing finished
+    TODO: prediction on test set
+
+[33mcommit 164dbd4526dd66679eca1df20fee333753d758ce[m
+Author: GeoffNN <geoffrey.negiar@polytechnique.edu>
+Date:   Thu Mar 2 15:42:32 2017 +0100
+
+    Removed *.csv files from git
+
+[33mcommit 695fed211c8414526db2470dc5f7d31bd7ed4b7e[m
+Author: GeoffNN <geoffrey.negiar@polytechnique.edu>
+Date:   Thu Mar 2 15:41:27 2017 +0100
+
+    SVM implementation started
+
+[33mcommit decc2ffcc57e33b2ce4f687411d2e198148d9564[m
+Author: GeoffNN <geoffrey.negiar@polytechnique.edu>
+Date:   Thu Mar 2 15:36:23 2017 +0100
+
+    SVM
+
+[33mcommit 83741b5af66ff65901a385faa12631b0faa784b6[m
+Author: GeoffNN <geoffrey.negiar@polytechnique.edu>
+Date:   Thu Mar 2 15:36:23 2017 +0100
+
+    SVM
+
+[33mcommit 889723f11145d1d6356b552deca4464227f29807[m
+Merge: 6acb4c7 7aed883
+Author: MarcSzafraniec <mszafraniec@laposte.net>
+Date:   Sun Feb 26 14:19:10 2017 +0100
+
+    Merge pull request #4 from GeoffNN/Marc
+    
+    Added HFS prediction
+
+[33mcommit 7aed88368143d560bf95099d70852c0b9f48bbf2[m
+Author: MarcSzafraniec <mszafraniec@laposte.net>
+Date:   Sun Feb 26 14:18:39 2017 +0100
+
+    Added HFS prediction
+
+[33mcommit 6acb4c78c76f41e683148aca7f7eb6f44ae787bc[m
+Merge: cbf2b2f ceed63e
+Author: MarcSzafraniec <mszafraniec@laposte.net>
+Date:   Sun Feb 26 14:14:33 2017 +0100
+
+    Merge pull request #3 from GeoffNN/Marc
+    
+    Added HFS
+
+[33mcommit ceed63e2f2f22fe5f256d6309809be6214d9f509[m
+Author: MarcSzafraniec <mszafraniec@laposte.net>
+Date:   Sun Feb 26 14:13:57 2017 +0100
+
+    Added HFS
+
+[33mcommit cbf2b2f63b7e1165ef25d6c464e2271e14eb947a[m
+Merge: db7124c 39edfee
+Author: GeoffNN <geoffrey.negiar@polytechnique.edu>
+Date:   Sat Feb 25 17:38:43 2017 +0100
+
+    Merge pull request #2 from GeoffNN/geoffrey
+    
+    Initial setup : folder structure and gitignore
+
+[33mcommit 39edfee163809ee1b568dba7963a277af05cfd69[m
+Author: GeoffNN <geoffrey.negiar@polytechnique.edu>
+Date:   Sat Feb 25 17:38:06 2017 +0100
+
+    Initial setup : folder structure and gitignore
+
+[33mcommit db7124c42ae0e3cde0883e00cf58e61d73c62c87[m
+Merge: f1cf2b9 b9d4186
+Author: GeoffNN <geoffrey.negiar@polytechnique.edu>
+Date:   Sat Feb 25 17:01:34 2017 +0100
+
+    Merge pull request #1 from GeoffNN/geoffrey
+    
+    Initial setup : folder structure and gitignore
+
+[33mcommit b9d4186be8dc08a64ae9e450bac272ba769af014[m
+Author: GeoffNN <geoffrey.negiar@polytechnique.edu>
+Date:   Sat Feb 25 16:59:57 2017 +0100
+
+    Initial setup : folder structure and gitignore
+
+[33mcommit f1cf2b9ebd9519209bca84cf9fcf1c302e869b57[m
+Author: GeoffNN <geoffrey.negiar@polytechnique.edu>
+Date:   Thu Feb 16 16:54:38 2017 +0100
+
+    Repo initialized
+
+[33mcommit 0469ce0fdd6d5bad2689031270e4af8f21529b29[m
+Author: GeoffNN <geoffrey.negiar@polytechnique.edu>
+Date:   Thu Feb 16 16:08:55 2017 +0100
+
+    Initial commit
