@@ -21,7 +21,6 @@ matplotlib.style.use('ggplot')
 import seaborn as sns
 sns.set(color_codes=True)
 import numpy as np
-from PIL import Image, ImageDraw
 
 from lib.graph_init import *
 from lib.hard_hfs import *
@@ -42,11 +41,6 @@ test = pd.read_csv('../data/Xte.csv', sep = ",", header = None)
 
 train.drop(train.columns[len(train.columns)-1], axis=1, inplace=True)
 test.drop(test.columns[len(test.columns)-1], axis=1, inplace=True)
-
-
-# In[4]:
-
-test
 
 
 # In[5]:
@@ -77,20 +71,16 @@ lp = LaplacianParams()
 
 sim = build_graph(input_vect, GraphParams())
 
-print(sim)
 
 
 # In[28]:
 
 L = build_laplacian(sim,lp)
 
-print(L.shape)
-
 
 # In[29]:
 
 hfs0, confidence = simple_hfs(input_vect, target_vect, L, sim)
-hfs0
 
 
 # In[63]:
@@ -101,19 +91,6 @@ df_output = pd.DataFrame()
 df_output['Id'] = IdTest
 df_output['Prediction'] = output
 df_output[['Id','Prediction']].to_csv('../predictions/test_hfs.csv', sep = ",", index=False)
-
-
-# In[64]:
-
-pd.Series(output).value_counts()
-
-
-# In[65]:
-
-pd.Series(target_vect).value_counts()
-
-
-# In[ ]:
 
 
 
