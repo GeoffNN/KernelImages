@@ -4,7 +4,7 @@ from sparse_function import sparse_absolute, sparse_min, sparse_norm_2
 
 def linear_kernel(x, y):
     res = x.dot(y.transpose())
-    return res
+    return res.data[0]
 
 
 def polynomial_kernel(x, y, d):
@@ -34,13 +34,13 @@ def gaussian_kernel(x, y, gamma):
 
 
 def kernel_matrix(X, kernel, **kwargs):
-    print(X.shape)
     n = X.shape[0]
     K = np.zeros((n, n))
     for i in range(n):
-        if i % 500 == 0:
-            print(i)
+        print(i)
         for j in range(n):
+            if j%500 == 0:
+                print('----------------',j)
             K[i, j] = kernel(X[i], X[j], **kwargs)
     return K
 
