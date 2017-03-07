@@ -1,10 +1,7 @@
 *.pdf
 data/*
+*.ipynb
 results/
 .idea/
 *.pyc
-*.jpeg
-/.cache/
-*.csv
-predictions/*
-src/__pycache__/
+pickles/*

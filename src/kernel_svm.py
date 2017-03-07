@@ -8,26 +8,25 @@ a = 0.25
 b = 1
 
 
-def kernel(x, y):
-    s = np.sum(abs(x ** a - y ** a) ** b)
-    return np.exp(-rho * s)
+def linear_kernel(x, y):
+    res = np.dot(x.T, y)
+    return res
 
 
-def kernel_matrix(X):
+def kernel_matrix(X, kernel, **kwargs):
     n = X.shape[0]
     K = np.zeros((n, n))
     for i in range(n):
         if (i % 500 == 0):
             print(i)
         for j in range(n):
-            K[i, j] = kernel(X.iloc[i, :], X.iloc[j, :])
+            K[i, j] = kernel(X[i], X[j], **kwargs)
     return K
 
 
-def transform_dual(X, y, K, C=300, ):
+def transform_dual(K, y, C=300):
     # Here, we keep lambda as the variable. We need to make A bigger to account for the 2 inequalities on lambda
-    n = X.shape[0]
-    X_m = matrix(X.values)
+    n = K.shape[0]
     Q = matrix(np.diag(y)) * K * matrix(np.diag(y))
     p = - np.ones(n)
     G = np.zeros((2 * n, n))
@@ -54,16 +53,23 @@ def transform_dual(X, y, K, C=300, ):
 # Computation of SVM
 # Output : alpha.T * Diag(y)
 
-def svm(X: object, y: object, C: object = 300) -> object:
-    Q, p, G, h = transform_dual(X, y, C)
+def svm(K, y: object, C: object = 300) -> object:
+    Q, p, G, h = transform_dual(K, y, C)
     w_sol = solvers.qp(Q, p, G, h)
-    print(w_sol)
     return np.dot(w_sol['x'].T, np.diag(y))
 
 
-def predict(w, x, K):
-    ker = np.array([kernel(x, X[i]) for i in range(X.shape[0])])
-    return np.sign(w * ker)
+def pred(w, x, X, kernel, **kwargs):
+    ker = np.array([kernel(x, X[i], **kwargs) for i in range(X.shape[0])])
+    return np.sign(np.dot(w, ker))
+
+
+def predict(w, X_test, X_train):
+    y_pred = np.ones(X_test.shape[0])
+    for i in range(X_test.shape[0]):
+        y_pred[i] = pred(w, X_test[i], X_train)
+
+    return y_pred
 
 
 def onevsallSVM(X, y, C=300):
@@ -85,13 +91,13 @@ def predict_onevsall(models, x, X, y):
     return cls
 
 
+# TODO
 def onevsoneSVM(X, y, C=300):
     for class1 in np.unique(y):
         for class2 in np.unique(y):
             if class1 != class2:
-                X_train = pd.concat((X.loc[y == class1], X.loc[y == class2]))
-                y_train = pd.concat((y.loc[y == class1]), y.loc(y == class2))
+                pass
 
 
 def error_rate(ypred, ytrue):
-    return np.mean(1 * (ypred != ytrue))
+    return np.mean((ypred != ytrue))
