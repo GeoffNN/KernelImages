@@ -127,8 +127,8 @@ def createHOG(images, blockSize = 4, nbins = 9):
     HOGfile = pd.DataFrame(HOGfile[1:]) #First line added I don't know why, but the other ones work
 
     pickle.dump(images, open('../pickles/HOG.pickle','wb'))
-    HOGfile[:len(train)].to_csv('../pickles/HOG_train.csv', sep = ",", index=False)
-    HOGfile[len(train):].to_csv('../pickles/HOG_test.csv', sep = ",", index=False)
+    HOGfile[:len(train)].to_csv('../pickles/HOG_train.csv', sep = ",", index=False, header = False)
+    HOGfile[len(train):].to_csv('../pickles/HOG_test.csv', sep = ",", index=False, header = False)
     
     return HOGfile
 
