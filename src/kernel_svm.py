@@ -3,11 +3,7 @@ import cvxopt
 from cvxopt import matrix, solvers
 import pandas as pd
 from numpy import diag
-
-rho = 1.
-a = 0.25
-b = 1
-
+from numpy.linalg.linalg import matrix_rank, cholesky
 
 
 class KernelSVM:
@@ -31,7 +27,7 @@ class KernelSVM:
     def fit(self, X_train, y_train):
         # Need X_test to compute the kernel
         if not self.given_kernel:
-            self.K = self.compute_kernel(X_train)
+            self.compute_kernel(X_train)
         Q, p, G, h = self.transform_dual(y_train)
         self.sol = solvers.qp(Q, p, G, h)
         self.alphas = pd.Series(self.sol['x'], index=X_train.index)
@@ -58,15 +54,13 @@ class KernelSVM:
                       index=self.support_))
 
     def compute_kernel(self, X):
-        data = X.values
         n = X.shape[0]
-        K = np.zeros((n, n))
-        for i in range(n):
-            if (i % 500 == 0):
-                print(i)
-            for j in range(n):
-                K[i, j] = self.kernel_fun(data[i, :], data[j, :], **self.parameters)
-        return K
+        self.K = pd.DataFrame(np.zeros((n, n)), index=X.index, columns=X.index)
+        print(self.K.shape)
+        for i, row1 in X.iterrows():
+            for j, row2 in X.iterrows():
+                print(self.kernel_fun(row1, row2, **self.parameters))
+                self.K.loc[i, j] = self.kernel_fun(row1, row2, **self.parameters)
 
     def transform_dual(self, y):
         # Here, we keep lambda as the variable. We need to make A bigger to account for the 2 inequalities on lambda
@@ -78,8 +72,4 @@ class KernelSVM:
         G[:n, :] = matrix(np.diag(y))
         G[n:2 * n, :] = matrix(-np.diag(y))
         h[:n] = self.C * np.ones(n)
-        print(matrix(q).size)
         return matrix(P), matrix(q), matrix(G), matrix(h)
-
-
-
