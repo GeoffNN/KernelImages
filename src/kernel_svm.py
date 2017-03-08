@@ -32,21 +32,22 @@ class KernelSVM:
         # Need X_test to compute the kernel
         if not self.given_kernel:
             self.K = self.compute_kernel(X_train)
-        Q, p, G, h = self.transform_dual(X_train, y_train)
+        Q, p, G, h = self.transform_dual(y_train)
         self.sol = solvers.qp(Q, p, G, h)
-        self.alpha_y = pd.Series(np.multiply(np.array(self.sol['x']).ravel(), (np.array(y_train))), index=X_train.index)
+        self.alphas = pd.Series(self.sol['x'], index=X_train.index)
+        self.alpha_y = pd.Series(np.multiply(self.alphas, (np.array(y_train))), index=X_train.index)
 
-        self.support_ = self.alpha_y[0 < self.alpha_y][self.alpha_y < self.C].index
+        self.support_ = self.alpha_y[(10 ** (-6) < self.alpha_y) & (self.alpha_y < self.C - 10 ** (-6))].index
         self.support_vectors_ = X_train.loc[self.support_]
-        self.alphas = pd.Series(self.sol['x'], index=X_train.index).loc[self.support_]
+        self.alphas = pd.Series(self.sol['x'], index=X_train.index)
 
     def predict(self, X_test):
-        """Return prediction margins for test data"""
+        """Return predictions for test data"""
         return self.predict_margin(X_test).apply(np.sign)
 
     def predict_margin(self, X_test):
         """Return prediction margins for test data"""
-        return X_test.apply(self.predict_x, axis=0)
+        return X_test.apply(self.predict_x, axis=1)
 
     def predict_x(self, x):
         """Return predictions for a vector"""
@@ -67,33 +68,18 @@ class KernelSVM:
                 K[i, j] = self.kernel_fun(data[i, :], data[j, :], **self.parameters)
         return K
 
-    def transform_dual(self, X, y):
+    def transform_dual(self, y):
         # Here, we keep lambda as the variable. We need to make A bigger to account for the 2 inequalities on lambda
-        n = X.shape[0]
-        Q = matrix(np.diag(y)) * self.K * matrix(np.diag(y))
-        p = - np.ones(n)
+        n = self.K.shape[0]
+        P = self.K
+        q = - y * np.ones(len(y))
         G = np.zeros((2 * n, n))
         h = np.zeros(2 * n)
-        G[:n, :n] = np.eye(n)
-        G[n:2 * n, :n] = -np.eye(n)
+        G[:n, :] = matrix(np.diag(y))
+        G[n:2 * n, :] = matrix(-np.diag(y))
         h[:n] = self.C * np.ones(n)
-        return matrix(Q), matrix(p), matrix(G), matrix(h)
+        print(matrix(q).size)
+        return matrix(P), matrix(q), matrix(G), matrix(h)
 
 
-def onevsallSVM(X, y, C=300):
-    models = {}
-    for cls in np.unique(y):
-        X_train = X.copy()
-        y_train = pd.Series([-1 if yval == cls else 1 for yval in y])
-        models[cls] = svm(X_train, y_train, C=C)
-    return models
 
-
-def predict_onevsall(models, x, X):
-    cls, margin = 0, 0
-    ker = np.array([kernel(x, X[i]) for i in range(X.shape[0])])
-    for i, m in models.items():
-        a = np.dot(m, ker)
-        if np.abs(a) > margin and a > 0:
-            cls, margin = i, np.abs(a)
-    return cls
