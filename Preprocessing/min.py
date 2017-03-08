@@ -1,4 +1,11 @@
 import numpy as np
+from scipy.sparse import csr_matrix
+
+# l = np.array([1, 2, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0])
+# m = np.array([5, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0])
+#
+# ls = csr_matrix(l)
+# ms = csr_matrix(m)
 
 
 def sparse_absolute(x):
@@ -18,11 +25,3 @@ def sparse_min(x, y):
     res = sparse_absolute(x + y) - sparse_absolute(x - y)
     res = sparse_scalar_multiplication(res, 0.5)
     return res
-
-
-def sparse_norm_2(x, square_norm=False):
-    res = x.power(2).sum()
-    if square_norm:
-        return res
-    else:
-        return np.sqrt(res)

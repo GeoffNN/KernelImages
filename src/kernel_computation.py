@@ -1,44 +1,15 @@
 import numpy as np
-from src.sparse_function import sparse_absolute, sparse_min, sparse_norm_2
+from tools import load_sparse_csr
+from kernel_functions import kernel_matrix, non_gaussian_rbf_kernel, generalized_histogram_kernel
+import pandas as pd
 
+histo_16s_train = load_sparse_csr("../data/histo_16s_train.npz")
 
-def linear_kernel(x, y):
-    res = x.dot(y.transpose())
-    return res
+K_gen_histo = kernel_matrix(histo_16s_train, generalized_histogram_kernel, a=0.5, b=0.5)
+K_gen_df = pd.DataFrame(K_gen_histo)
+np.save("generalized_histo_kernel", K_gen_histo)
+K_gen_df.to_pickle("gen_histo_ker")
 
-
-def polynomial_kernel(x, y, d):
-    res = (x.dot(y.transpose()).data[0] + 1) ** d
-    return res
-
-
-def non_gaussian_rbf_kernel(x, y, a, b, gamma):
-    res = sparse_absolute(x.power(a) - y.power(a))
-    res = res.power(b)
-    res = res.sum()
-    res = np.exp(-gamma * res)
-    return res
-
-
-def generalized_histogram_kernel(x, y, a, b):
-    x_a = x.power(a)
-    y_b = y.power(b)
-    res = sparse_min(x_a, y_b)
-    res = res.sum()
-    return res
-
-
-def gaussian_kernel(x, y, gamma):
-    res = np.exp(-gamma * sparse_norm_2(x - y, True))
-    return res
-
-
-def kernel_matrix(X, kernel, **kwargs):
-    n = X.shape[0]
-    K = np.zeros((n, n))
-    for i in range(n):
-        if (i % 500 == 0):
-            print(i)
-        for j in range(n):
-            K[i, j] = kernel(X[i], X[j], **kwargs)
-    return K
+K_non_gaussian_rbf = kernel_matrix(histo_16s_train, non_gaussian_rbf_kernel, a=0.25, b=1, gamma=1)
+K_non_gauss_df = pd.DataFrame(K_non_gaussian_rbf)
+np.save("non_gaussian_kernel", K_non_gaussian_rbf)

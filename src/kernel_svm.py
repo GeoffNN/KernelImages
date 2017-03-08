@@ -9,6 +9,7 @@ a = 0.25
 b = 1
 
 
+
 class KernelSVM:
     def __init__(self, K=None, kernel_fun=None, C=300, **kwargs):
         self.given_kernel = False
