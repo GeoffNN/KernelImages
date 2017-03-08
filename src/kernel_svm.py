@@ -83,22 +83,3 @@ class KernelSVM:
 
 
 
-
-
-def onevsallSVM(X, y, C=300):
-    models = {}
-    for cls in np.unique(y):
-        X_train = X.copy()
-        y_train = pd.Series([-1 if yval == cls else 1 for yval in y])
-        models[cls] = svm(X_train, y_train, C=C)
-    return models
-
-
-def predict_onevsall(models, x, X):
-    cls, margin = 0, 0
-    ker = np.array([kernel(x, X[i]) for i in range(X.shape[0])])
-    for i, m in models.items():
-        a = np.dot(m, ker)
-        if np.abs(a) > margin and a > 0:
-            cls, margin = i, np.abs(a)
-    return cls
