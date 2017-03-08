@@ -17,7 +17,7 @@ def load_train_target(path_to_data="../data/"):
     return pd.read_csv(path_to_data + "data/Ytr.csv", sep=",", index_col=0)['Prediction']
 
 
-def print_results(Y_pred, title, path_to_results="results/"):
+def print_results(Y_pred, title, path_to_results="predictions/"):
     Y_pred.to_csv(path_to_results + title)
 
 

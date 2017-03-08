@@ -5,6 +5,7 @@ from tools import load_train_feats, load_test_feats,save_sparse_csr
 data_train = load_train_feats()
 data_test = load_test_feats()
 
+
 histo_16_train = data_to_histogram(data_train, 16)
 histo_16_test = data_to_histogram(data_test, 16)
 
