@@ -3,8 +3,8 @@ from sparse_function import sparse_absolute, sparse_min, sparse_norm_2
 
 
 def linear_kernel(x, y):
-    res = x.dot(y.transpose())
-    return res.data[0]
+    res = x.dot(y.transpose()).data[0]
+    return res
 
 
 def polynomial_kernel(x, y, d):
@@ -39,10 +39,11 @@ def kernel_matrix(X, kernel, **kwargs):
     for i in range(n):
         print(i)
         for j in range(n):
-            if j%500 == 0:
-                print('----------------',j)
+            if j % 1000 == 0:
+                print('----------------', j)
             K[i, j] = kernel(X[i], X[j], **kwargs)
     return K
+
 
 def scipy_sparse_to_spmatrix(A):
     coo = A.tocoo()
