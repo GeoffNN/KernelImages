@@ -1,6 +1,4 @@
 import numpy as np
-from sparse_function import sparse_absolute, sparse_min, sparse_norm_2
-
 
 def linear_kernel(x, y):
     res = x.dot(y.transpose()).data[0]
@@ -28,20 +26,24 @@ def generalized_histogram_kernel(x, y, a, b):
     return res
 
 
-def gaussian_kernel(x, y, gamma):
-    res = np.exp(-gamma * sparse_norm_2(x - y, True))
-    return res
+def gaussian(x, y, gamma):
+    return np.exp(-gamma * (x - y).dot((x-y).T))
+
+
+def laplacian(x, y, a, b, rho):
+    s = np.sum(abs(x ** a - y ** a) ** b)
+    return np.exp(-rho * s)
 
 
 def kernel_matrix(X, kernel, **kwargs):
     n = X.shape[0]
     K = np.zeros((n, n))
     for i in range(n):
-        print(i)
+        # print(i)
         for j in range(n):
-            if j % 1000 == 0:
-                print('----------------', j)
-            K[i, j] = kernel(X[i], X[j], **kwargs)
+            # if j % 1000 == 0:
+            #     print('----------------', j)
+            K[i, j] = kernel(X.iloc[i], X.iloc[j], **kwargs)
     return K
 
 
@@ -49,3 +51,4 @@ def scipy_sparse_to_spmatrix(A):
     coo = A.tocoo()
     SP = spmatrix(coo.data.tolist(), coo.row.tolist(), coo.col.tolist(), size=A.shape)
     return SP
+

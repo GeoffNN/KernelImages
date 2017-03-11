@@ -4,7 +4,6 @@
 import warnings
 warnings.filterwarnings('ignore')
 # ---
-get_ipython().magic('matplotlib inline')
 import pandas as pd
 pd.options.display.max_columns = 100
 import numpy as np
