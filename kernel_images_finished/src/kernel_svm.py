@@ -3,7 +3,6 @@ import cvxopt
 from cvxopt import matrix, solvers
 import pandas as pd
 from numpy import diag
-from numpy.linalg.linalg import matrix_rank, cholesky
 
 
 class KernelSVM:
